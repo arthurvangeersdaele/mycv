@@ -3,91 +3,699 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - CV</title>
+    <title>MY CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             color: #333;
             margin: 20px;
-            background-color: #f9f9f9;
+            --mainColor: #377f5d ;
+            --x: 50%;
+            --y: 50%;
+            background: radial-gradient(
+                circle at var(--x) var(--y),
+                var(--mainColor) 0%,
+                #101010 200%
+            );
+            transition: background 5s ease;
+            position: relative;
+            user-select: none;
+        }
+        .mouse-light {
+            position: fixed;
+            pointer-events: none;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            z-index: 0;
         }
         .container {
+            position:relative;
             max-width: 800px;
             margin: 0 auto;
-            background: #fff;
+            background: tranparent;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            border-radius: calc(1.618*5px);
+            z-index: 1;
+        }
+        .profile-pic{
+            position:absolute;
+            top:0px;
+            right:0px;
+            height:200px;
+            width:200px;
+            border-radius:50%;
+            padding:0px;
+            margin-right:-180px;
+            background-color: white;
+            outline: 5px solid rgba(255, 255, 255, 0.3);
+         
+        }
+        .profile-pic img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover; /* ✨ crops the image properly */
+            object-position: center;
+            border-radius: 50%; /* optional: smooth edges */
+        }
+        .profile-pic-info-bubble{
+            position:absolute;
+            bottom:0px; 
+            left:0px;
+            height:50px;
+            width:50px;
+            border-radius:50%;
+            outline: 3px solid rgba(220, 220, 220, 1.0);
+            background-color: white;
+            display: flex;
+            align-items: center;    
+            justify-content: center;
+            text-align: center;
+            font-size:1.5em;
+            z-index: 999;
+            pointer-events: none;
+        }
+        .profile-pic-about-me{
+            position:absolute;
+            top:calc(200px - 50px); 
+            right:calc(200px - 50px);
+            height:50px;
+            width:50px;
+            overflow:hidden;
+            padding:0px 25px 10px 20px;
+            border-radius:25px 25px 25px 25px;
+            outline: 3px solid rgba(240, 240, 240, 1.0);
+            background-color: white;
+            justify-content: justify;
+            font-size:1em;
+            z-index: 998;
+            opacity:0;
+            color:transparent;
+            transition: opacity 0.5s ease, border-radius, 0.5s ease, color 1s ease-in;
+        }
+        .profile-pic-about-me:hover{
+            height:200px;
+            width:400px;
+            opacity:1;
+            border-radius:3px 25px 3px 3px;
+            box-shadow: 2px 2px 6px 2px rgba(0, 0, 0, 0.2);
+
+        }
+
+        .profile-pic-about-me p{
+            text-align:justify;
+            line-height: 1.2;
+            color:#333;
+
         }
         h1, h2 {
-            color: #2c3e50;
+            margin-left:-50px;
+            color: white;
+        }
+        p{
+            color:#dddddd;
+        }
+        a {
+            background-color: transparent; 
+            color: rgba(255, 255, 255, 0.6); /* translucent white background */
+            backdrop-filter: blur(5px); /* optional: subtle blur behind the button */
+            border: none;
+            padding: 0.5em 1em;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        button{
+            cursor: pointer;
+        }
+        .filters-container{
+
+        }
+        .filter-button{
+            background-color: transparent; 
+            color: rgba(255, 255, 255, 0.6); /* translucent white background */
+            backdrop-filter: blur(5px); /* optional: subtle blur behind the button */
+            border: none;
+            padding: 0.5em 1em;
+            margin:2px 5px 2px 5px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            text-decoration: none;
+        }
+        .filter-button[data-status="active"] {
+          box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.2);
+          background-color: var(--mainColor);
+          color: white;
+        }
+        .filter-button[data-status="inactive"] {
+        }
+        .filter-button:hover{
+            box-shadow: 2px 2px 6px 2px rgba(255, 255, 255, 0.2);
+        }
+        .filter-delete {
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 0;
+            transition: width 0.5s ease, opacity 0.5s ease;
+            font-size:1em;
+            font-weight: 900; /* Required for solid icons */
+            color: rgba(214, 47, 60, 0.8); /* Set the color to red */
+            border: none;
+            background-color: transparent;
+            width: auto; /* default: full width */
+        }
+        .filter-delete[data-status="inactive"] {
+            width: 0;
+            padding: 0; /* remove padding to fully hide */
+            opacity: 0;
+            transition: width 0.5s ease, opacity 0.5s ease;
+        }
+
+        .filter-delete[data-status="active"] {
+            width: auto;
+            opacity: 1;
+            padding: 0;
+            transition: width 0.5s ease, opacity 0.5s ease;
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
         }
         .section {
             margin-bottom: 20px;
         }
         .section-title {
-            border-bottom: 2px solid #2c3e50;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.6);
             padding-bottom: 5px;
+        }
+        .experience-cards-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 40px;
+            border-left: 3px solid rgba(255, 255, 255, 0.4);
+            margin-left: 10px;
+        }
+        .timeline-start{
+            margin-left:2.5px;
+            margin-top:0px;
+            position: relative;
+            color:rgba(255, 255, 255, 0.4);
+        }
+        .timeline-end{
+            border-bottom: 12px solid rgba(255, 255, 255, 0.4);
+            border-left: 6px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: none;
+            margin-left:5.5px;
+            margin-top:-12px;
+            position: relative;
+            max-width:0.5px;
+        }
+
+        .experience-card {
+            position: relative;
+            cursor: pointer;
+            background-color: transparent;
+            border-radius: 8px;
+            padding: 2px 5px;
+            margin-bottom: 2em;
+            margin-left:-21.5px;
+            max-width: 800px;
+            transition: margin 0.2s ease, opacity 0.5s ease;
+        }
+
+        .experience-card::before {
+            content: "";
+            position: absolute;
+            left: -27px;
+            top: calc(1.4em/2);
+            width: 10px;
+            height: 10px;
+            background-color: var(--mainColor);
+            border: 2px solid white;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px rgba(80, 80, 80, 0.2);
+            transition: margin 0.2s ease, opacity 0.5s ease;
+        }
+        .experience-card:hover{
+            margin-left:0px;
+        }
+        .experience-card:hover:before{
+            background-color: white;
+            margin-left:-21.5px;
+        }
+        .experience-card:hover .experience-card-title{
+            color:white;
+        }
+        .experience-card:hover .experience-card-date{
+            opacity:1.0;
+            margin-right:60px;
+        }
+        .experience-card:hover .experience-card-keywords{
+            opacity:1.0;
+            max-height:200px;
+            height:auto;
+        }
+        .experience-card-title{
+            color: rgba(255, 255, 255, 0.6); /* translucent white background */
+            font-size:1.2em;
+            font-weight:700;
+            padding:0;
+            margin:0;
+        }
+        .experience-card-date{
+            position: absolute;
+            top:calc(1em/2); 
+            right:100%;
+            width:auto;
+            white-space: nowrap;
+            font-size:1em;
+            font-weight:400;
+            font-variant: small-caps;
+            padding:0px;
+            margin:0;
+            margin-right:40px;
+            color:rgba(255, 255, 255, 0.6);
+            background-color:transparent;
+            opacity:0;
+            text-align: right;
+            transition: margin 0.2s ease, opacity 0.5s ease;
+        }
+        .experience-card-keywords{
+            position: relative;
+            overflow:hidden;
+            height:0px;
+            display:flex;
+            transition: height 0.2s ease, opacity 0.5s ease;
+        }
+        .experience-card-keywords .keyword{
+            font-size:0.8em;
+            line-height: 0.8;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: var(--mainColor);
+            padding: 0.2em;
+            margin:1px 2px 1px 2px;
+            border-radius: 4px;
+        }
+        .experience-card-description{
+            position: relative; 
+            text-align:justify;
+            min-width:800px;
+            opacity:1.0;
+            transition: margin 0.2s ease, opacity 0.5s ease, height 0.5s ease;
+
+        }
+        .experience-card-description[data-status="active"] {
+            min-height: 100px;
+        }
+
+        .experience-card-description[data-status="inactive"] {
+            height: 0px;
+            opacity:0;
+            overflow:hidden;
+
         }
         ul {
             padding-left: 20px;
+        }
+        .spacer{
+            height:30px;
+        }
+        footer{
+            margin-left:-50px;
+        }
+        /* funny       */
+        .shiny-text {
+            position: relative;
+            display: inline-block;
+            font-weight: bold;
+            color: #ffffff;
+            background: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 1.0) 0%,
+                rgba(255, 255, 255, 0.8) 50%,
+                rgba(255, 255, 255, 1.0) 100%
+            );
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                background-position: 200% center;
+            }
+            100% {
+                background-position: -200% center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Your Name</h1>
-            <p>Email: your.email@example.com | Phone: +123 456 7890 | LinkedIn: linkedin.com/in/yourname</p>
+        <div class="mouse-light"></div>
+        <header id="main-header">
+            <h1>Arthur Van Geersdaele</h1>
+            <div class="profile-pic">
+                <img  src="https://avatars.githubusercontent.com/u/64006823?v=4" alt="Description of the image"> 
+                <div class="profile-pic-info-bubble"> <p>🦉</p></div>
+                <div class="profile-pic-about-me">
+                    <p> Hey ! </p>
+                    <p> My career is focused on accessible and open-source medical technologies, with an affinity for humanitarian organizations. I received a lot, I want to give it back.</p>
+                    <p> Don't hesitate to send me an email if I can help you with my skills! </p>
+
+                    <p style="text-align:right;"> Arthur </p>
+                </div>
+
+            </div>
+            <p> <a href="mailto:arthurvg@gmail.com">  <i class="fa-solid fa-envelope"></i>  Send Email </a> | <a href="https://www.linkedin.com/in/arthur-van-geersdaele-35189515b/"> <i class="fa-brands fa-linkedin"></i> LinkedIn </a></p>
+            <h2 class="shiny-text"> What is your organization about ? </h2>
+            <div class="filters-container">
+                <button class="filter-delete " onclick="setAllFilterButtonsInactive()" data-status="inactive" title='reset all filters'><i class="fa-solid fa-rotate-left"></i></button>
+                <button class="filter-button " onclick="toggleFilterButton(this); " data-status="inactive"> Medical Devices </button>
+                <button class="filter-button " onclick="toggleFilterButton(this); " data-status="inactive"> Humanitarian Aid</button>
+                <button class="filter-button " onclick="toggleFilterButton(this); " data-status="inactive"> Open-Source </button>
+                <button class="filter-button " onclick="toggleFilterButton(this); " data-status="inactive"> 3D Printing </button>
+                <button class="filter-button " onclick="toggleFilterButton(this); " data-status="inactive"> Web Design </button>
+            </div>
+            <div class="spacer"> </div>
         </header>
 
         <section class="section">
-            <h2 class="section-title">Professional Summary</h2>
-            <p>A brief, impactful summary highlighting your skills, experience, and career goals.</p>
+            <h2 class="section-title">We are shaped by our experiences</h2>
+            <div class="spacer"> </div>
+            <div class="timeline-end"> </div>
+            <div class="experience-cards-container">
+                <!-- POC3DP -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="Medical Devices, 3D Printing" > 
+                    <p class="experience-card-title"> Point-of-Care Lab Development </p>
+                    <p class="experience-card-date"> Started 2yrs ago </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> Hospital environment </p>
+                        <p class="keyword"> Lab management </p>
+                        <p class="keyword"> Quality Management </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> I currently work as a researcher for UCLouvain to develop a Point-of-Care 3D printing laboratory in collaboration with the CUSL and 3D-Side. This lab aims to manufacture anatomical models and surgical guides in the hospital. I had to define a Quality Management System for the theoretical lab, then build it from scratch. Then we continued with pre-clinical trials on the surgical guides obtained. </p>
+                    </div>
+                </div>
+                <!-- Red Cross -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="Medical Devices, Humanitarian Aid"> 
+                    <p class="experience-card-title"> Belgium Red-Cross Secourist </p>
+                    <p class="experience-card-date"> Started 6mth ago </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> Hospital environment </p>
+                        <p class="keyword"> Emergency initiatives </p>
+                        <p class="keyword"> Adaptability </p>
+                        <p class="keyword"> Team work </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> I qualified as Secourist at the Belgian Red-Cross, learned the most recent first-aid procedures and healthcare team-work practices. Together, we ensure emergency interventions during big events, such as the La Louvière Carnaval, and care about the trauma encountered. </p>
+                    </div>
+                </div>
+
+                <!-- Order of Malta -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="Medical Devices, Humanitarian Aid"> 
+                    <p class="experience-card-title"> ODM National Camps, Healthcare Logistics</p>
+                    <p class="experience-card-date"> Started 4yr ago </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> Healthcare</p>
+                        <p class="keyword"> Volunteering </p>
+                        <p class="keyword"> Disabled People </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> The ODM National Camps are similar to Scouting, but specifically designed for youth with disabilities, ranging from 4 to 22 years old. As the Medical Logistic Manager, I am responsible for overseeing the health and well-being of the participants throughout the year. My duties include defining the necessary documentation for their admission, administering prescribed medical procedures after proper training, and distributing medication during events. Additionally, I handle emergency situations and take preventive measures to ensure the safety of the participants. </p>
+                    </div>
+                </div>
+
+                <!-- Africa -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="Medical Devices, Humanitarian Aid"> 
+                    <p class="experience-card-title"> Mzumbe Hospital internship, Morogoro, Tanzania </p>
+                    <p class="experience-card-date"> Jul-Aug 2023 </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> Culture </p>
+                        <p class="keyword"> Adaptability  </p>
+                        <p class="keyword"> Team work </p>
+                        <p class="keyword"> Hospital environment </p>
+                        <p class="keyword"> Volunteering </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> I went alone to Mzumbe, in Morogoro, after finishing my master thesis. I had this opportunity through AIESEC, but I quickly realised it was more volun-tourism than genuine volunteering. Fortunately, I became familiar with the medical staff of the Mzumbe hospital, and they teached me common medical and biotechnical procedures during my stay. I also became friend with other volunteers and ended helping them in a disabled children facility on week-ends. 
+                    </div>
+                </div>
+
+                <!-- Kot So Pot -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="Web Design, Open-Source"> 
+                    <p class="experience-card-title"> Kot So Pot, a collaborative party game</p>
+                    <p class="experience-card-date"> From 2023 to Today </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> Team work </p>
+                        <p class="keyword"> Volunteering </p>
+                        <p class="keyword"> Open-Source </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> I developed an online free party game that allows players to contribute their own cards, guided by a rigorous ethical framework. The game is still active today; despite the lack of promotion, it continues to grow organically and is adapted to the campus it has been launched on. </p>
+                    </div>
+                </div>
+
+                <!-- TFE -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="Medical Devices, Humanitarian Aid, Open-Source"> 
+                    <p class="experience-card-title"> The Open-Source Sequential Compression Device </p>
+                    <p class="experience-card-date"> Master thesis, 2023 </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> UCLouvain </p>
+                        <p class="keyword"> Team work </p>
+                        <p class="keyword"> Hospital environment </p>
+                        <p class="keyword"> Quality Management </p>
+                        <p class="keyword"> Open-Source </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p>Thalie Sarafidis and I worked on the development of an Open-Source Sequential Compression Device. This low-cost device aims to facilitate the lower-limb compression treatment of overweight people, old people and above all long-term bedridden patients. The prototype we built is functionnal and still need to be validated and certified. This work highlighted the challenges and incompatibilities between Open-Source practices and the European regulation on medical devices.</p>
+                    </div>
+                </div>
+
+
+                <!-- Master -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="All"> 
+                    <p class="experience-card-title"> Master in Biomedical Robotics and Data Acquisition </p>
+                    <p class="experience-card-date"> From 2021 to 2023 </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> UCLouvain </p>
+                        <p class="keyword"> Healthcare</p>
+                        <p class="keyword"> Quality Management </p>
+                        <p class="keyword"> Statistics </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> This master topic suited me perfectly. The biomedical field has brought a touch of humanity back to my career when I was missing it. Throught industrial projects, biorobitic developments, AI development and neurological models, I learned about biomedical devices, their frameworks and the related stakeholders. </p>
+                    </div>
+                </div>
+
+                <!-- Kapvalier -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="Web Design"> 
+                    <p class="experience-card-title"> « Le Kapvalier », the Louvain-la-Neuve Chess Club</p>
+                    <p class="experience-card-date"> From 2021 to 2023 </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> UCLouvain </p>
+                        <p class="keyword"> Team work </p>
+                        <p class="keyword"> Volunteering </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> Post-covid, I recruted 14 people and we founded the official Chess Club of the Louvain-la-Neuve campus. We then named it « Le Kapvalier ». I was in charge of managing the team and the events (Chess Nights, Tournaments, partnerships, etc.).  </p>
+                    </div>
+                </div>
+
+
+                <!-- Bac -->
+                <div class="experience-card" onclick="showDescription(this)" data-filters="All"> 
+                    <p class="experience-card-title"> Louvain School of Engineering, bachelor of civil engineering </p>
+                    <p class="experience-card-date"> From 2017 to 2021 </p>
+                    <div class="experience-card-keywords">
+                        <p class="keyword"> UCLouvain </p>
+                    </div>
+                    <div class="experience-card-description" data-status="inactive">
+                        <p> I went, I liked, and then graduated. Thermodynamics made me struggle. </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-start">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
         </section>
 
         <section class="section">
-            <h2 class="section-title">Experience</h2>
-            <h3>Job Title - Company Name</h3>
-            <p><em>Start Date – End Date</em></p>
+            <h2 class="section-title">I earned skills from these events</h2>
             <ul>
-                <li>Key responsibility or achievement #1</li>
-                <li>Key responsibility or achievement #2</li>
-                <li>Key responsibility or achievement #3</li>
+                <li> The e-Nable project</li>
+                <li> ITECO, « here or elsewhere, what to do? » </li>
+                <li> Mzumbe Hospital, Morogoro, Tanziania - Mainland </li>
+                <li> Preterm medical device</li>
+                <li> AAOS Convention</li>
+                <li> Living in a big family </li>
+                <li> Classical Dancing </li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Recommandations</h2>
+            <ul>
+                <li> Recommandation #1</li>
+                <li> Recommandation #2</li>
+                <li> Recommandation #3</li>
             </ul>
 
-            <h3>Job Title - Company Name</h3>
-            <p><em>Start Date – End Date</em></p>
-            <ul>
-                <li>Key responsibility or achievement #1</li>
-                <li>Key responsibility or achievement #2</li>
-            </ul>
+            <p>Other references available upon request.</p>
         </section>
 
-        <section class="section">
-            <h2 class="section-title">Education</h2>
-            <p><strong>Degree - Field of Study</strong><br>University Name, Graduation Year</p>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Skills</h2>
-            <ul>
-                <li>Skill #1</li>
-                <li>Skill #2</li>
-                <li>Skill #3</li>
-            </ul>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Projects</h2>
-            <h3>Project Name</h3>
-            <p>Brief description of the project, technologies used, and your role.</p>
-        </section>
 
         <footer>
-            <p>References available upon request.</p>
+            <p> Copyright 2025, Apache License v2.0 Jan 2004. Created by Arthur VG DG. </p>
         </footer>
     </div>
 </body>
+
+<script>
+    //mouse lighting
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth) * 100;
+        const y = (e.clientY / window.innerHeight) * 100;
+        document.body.style.setProperty('--x', `${x}%`);
+        document.body.style.setProperty('--y', `${y}%`);
+        const light = document.querySelector('.mouse-light');
+        light.style.left = `${e.clientX}px`;
+        light.style.top = `${e.clientY}px`;
+    });
+    
+    //change main color
+    function setMainColorTo(filterText, nActive = 1) {
+        let color ='#377f5d';
+        if(filterText.includes('Web Design')){
+            color = '#609dbf';
+        }
+        if(filterText.includes('Open-Source')){
+            color = '#804004';
+        }
+        if(nActive > 1){
+            color ='#377f5d';
+        }
+        document.body.style.setProperty('--mainColor', color);
+    }
+    //filter toogling
+    function toggleFilterButton(btn) {
+        const dels = document.getElementsByClassName('filter-delete');
+        const buttons = document.getElementsByClassName('filter-button');
+        const cards = document.querySelectorAll('.experience-card');
+
+
+        const current = btn.getAttribute("data-status");
+        btn.setAttribute("data-status", current === "active" ? "inactive" : "active");
+
+        for (let i = 0; i < dels.length; i++) {
+            dels[i].setAttribute("data-status", "active");
+        }
+
+        // Check if any filter button is active
+        let nActive = 0;
+        let anyCard = false;
+        setAllExperienceCardsHidden();
+        for (let i = 0; i < buttons.length; i++) {
+            console.log(i);
+            if (buttons[i].getAttribute("data-status") === "active") {
+                nActive ++;
+                cards.forEach(card => {
+                    const filters = card.getAttribute('data-filters');
+                    if (filters.includes(buttons[i].textContent.trim()) || filters.includes('All')) {
+                        card.style.display = 'block';
+                        anyCard = true;
+                    } 
+                });
+            }
+        }
+
+        // color management 
+        if(btn.getAttribute("data-status") ===  "active"){
+            setMainColorTo(btn.textContent, nActive);
+        } else {
+            setMainColorTo('default', nActive);
+        }
+
+        // If no filter button is active, set the delete filter buttons to inactive
+        if (!nActive) {
+            setAllFilterButtonsInactive();
+            cards.forEach(card => {
+                card.style.display = 'block';
+                anyCard = true;
+            });
+        }
+
+        // alert if no card displayed
+        if(! anyCard){
+            alert('no experience found');
+        }
+        
+    }
+
+    function setAllExperienceCardsHidden(){
+        const cards = document.querySelectorAll('.experience-card');
+        cards.forEach(card => {
+                        card.style.display = 'none';
+                });
+    }
+    function setAllFilterButtonsInactive(){
+        const dels = document.getElementsByClassName('filter-delete');
+        const buttons = document.getElementsByClassName('filter-button');
+
+        for (let i = 0; i < dels.length; i++) {
+            dels[i].setAttribute("data-status", "inactive");
+        }
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].setAttribute("data-status", "inactive");
+        }
+        const cards = document.querySelectorAll('.experience-card');
+        cards.forEach(card => {
+                        card.style.display = 'block';
+                });
+
+        // background main color management
+        setMainColorTo('default');
+    }
+
+    // experience click journey
+    function showDescription(experienceCard) {
+        let init = experienceCard.querySelector('.experience-card-description').getAttribute("data-status");
+        console.log(init);
+        // Hide all other descriptions
+        const cards = document.querySelectorAll('.experience-card');
+        cards.forEach(card => {
+            const desc = card.querySelector('.experience-card-description'); // Adjust class as needed
+            if (desc) desc.setAttribute("data-status", "inactive");
+        });
+
+        // Activate the current card's description if it was not
+        if(init === 'inactive'){
+            const currentDesc = experienceCard.querySelector('.experience-card-description');
+            if (currentDesc) currentDesc.setAttribute("data-status", "active");  
+            experienceCard.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center' // or 'center', 'end', 'nearest'
+            });
+        }
+    }
+</script>
+
+
 </html>
