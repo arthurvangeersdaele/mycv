@@ -149,14 +149,14 @@
             transform: scale(1);
             border-radius:3px 25px 3px 3px;
             margin:0px 0px 0px 0px;
-            box-shadow: 2px 2px 6px 2px rgba(var(--black), 0.2);
+            box-shadow: 2px 2px 6px 2px rgba(0,0,0, 0.2);
 
         }
 
         .profile-pic-about-me p{
             text-align:justify;
             line-height: 1.2;
-            color: rgba(var(--black), 0.8);
+            color: rgba(0,0,0, 0.8);
 
         }
         .profile-pic-about-me-more{
@@ -171,6 +171,7 @@
             z-index:999;
             padding-top:0.9em;
             padding-left:1px;
+            box-shadow: 2px 2px 6px 2px rgba(0,0,0, 0.2);
         }
         .profile-pic-about-me-more::before {
             content: 'Learn to know me';
@@ -178,7 +179,7 @@
             top: 1px; /* adjust vertically to overlap the top border */
             left: 1px;   /* or center with left: 50%; transform: translateX(-50%) */
             background-color: transparent; /* same as parent background to 'cut through' the border */
-            color: rgba(var(--black), 0.4);
+            color: rgba(0,0,0, 0.4);
             padding: 0;
             line-height:0.9;
             font-size: 0.8em;
@@ -187,7 +188,7 @@
         }
         .profile-pic-about-me-more button{
             background-color: transparent;
-            color: var(--mainColor);
+            color: rgba(0,0,0,1);
             padding:1px 5px;
             border-radius: 50px;
             border:none;
@@ -222,19 +223,24 @@
         p{
             color:rgba(var(--white), 0.9);
         }
+        p .small{
+            font-size:0.5em;
+        }
         a {
             background-color: transparent; 
             color: rgba(var(--white), 0.6); /* translucent rgba(var(--white), 1) background */
             backdrop-filter: blur(5px); /* optional: subtle blur behind the button */
             border: none;
-            padding: 0.5em 1em;
             border-radius: 8px;
-            font-weight: bold;
             font-size: 1rem;
             text-decoration: none;
         }
         a:hover{
             text-decoration: underline;
+        }
+        a.social{
+            font-weight: bold;
+            padding: 0.5em 1em;
         }
         button{
             cursor: pointer;
@@ -273,7 +279,7 @@
             transition: width 0.5s ease, opacity 0.5s ease;
             font-size:1em;
             font-weight: 900; /* Required for solid icons */
-            color: rgba(214, 47, 60, 0.8); /* Set the color to red */
+            color: rgba(var(--white), 0.6);
             border: none;
             background-color: transparent;
         }
@@ -289,7 +295,7 @@
             margin-left:-17px;
             opacity: 1;
             transition: max-width 0.5s ease, margin-left 0.5s ease, opacity 0.5s ease;
-/*            text-shadow: 0 0 3px rgba(var(--white), 0.3);*/
+
         }
         .section {
             margin-bottom: 20px;
@@ -347,7 +353,7 @@
             border: 2px solid rgba(var(--white), 1);
             border-radius: 50%;
             z-index: 1;
-            box-shadow: 0 0 0 3px rgba(var(--white), 0.1);
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
             transition: margin 0.2s ease, opacity 0.5s ease;
         }
         .experience-card:hover{
@@ -449,7 +455,7 @@
             cursor: pointer;
 /*          box-shadow: 2px 2px 6px 2px rgba(var(--white), 0.2);*/
             outline: solid 2px rgba(var(--white), 0.5);
-            background-color: rgba(var(--white), 0.05); 
+            background-color: rgba(255, 255, 255, 0.05); 
             backdrop-filter: blur(5px); /* optional: subtle blur behind the button */
             border: none;
             min-width: calc(800px/3);
@@ -556,7 +562,7 @@
             width:80%;
             height:80%;
             padding:10px;
-            background-color:rgba(var(--white), 1);
+            background-color:rgba(255, 255, 255, 1);
             outline: solid 3px rgba(var(--white), 0.5);
             border: solid 5px var(--mainColor);
             border-radius:8px;
@@ -598,7 +604,7 @@
         }
         .event-card-description-reader .text-zone .event-card-title{
             font-family: 'Times New Roman', Times, serif;
-            color: rgba(var(--black), 1.0);
+            color: rgba(0, 0, 0, 1.0);
             font-size:1.2em;
             font-weight:700;
             padding:0;
@@ -606,7 +612,7 @@
 
         }
         .event-card-description-reader .text-zone .event-card-date{
-            color: rgba(var(--black), 1.0);
+            color: rgba(0, 0, 0, 1.0);
             white-space: nowrap;
             font-size:1em;
             font-weight:400;
@@ -618,7 +624,7 @@
         .event-card-description-reader .text-zone .event-card-description{
             position: relative;
             display:block;
-            color: rgba(var(--black), 1.0);
+            color: rgba(0, 0, 0, 1.0);
             font-size:1.3em;
             font-weight:400;
             text-align: justify;
@@ -658,7 +664,7 @@
             margin-right:120px;
             display: block;
             font-family: 'Times New Roman', Times, serif;
-            color: rgba(var(--black), 1.0);
+            color: rgba(0, 0, 0, 1.0);
             font-size:1.2em;
             font-weight:700;
             font-style: normal;
@@ -710,7 +716,7 @@
             background: radial-gradient(
                 circle at var(--x) var(--y),
                 var(--mainColor) 0%,
-                #101010 200%
+                rgba(var(--black), 1) 200%
             );
             opacity:80%;
             pointer-events: auto;
@@ -733,7 +739,7 @@
             line-height: 1.2;
             transition: background-color 0.3s ease, font-size 0.3s ease;
         }
-        footer:hover{
+        footer:hover, footer:hover p.small,  footer:hover p.small a{
             background-color: rgba(var(--white), 0.0);
             font-size: 1rem;
             line-height: 1.2;
@@ -757,6 +763,10 @@
             width: 100%;        /* 40% of footer width */
             height: 3px;       /* Thickness */
             background-color: rgba(var(--white), 1); /* Border color */
+        }
+        footer p.small, footer p.small a{
+            font-size:0.5rem;
+            transition: font-size 0.3s ease;
         }
         /* funny       */
         .shiny-text {
@@ -801,7 +811,7 @@
         <div class="mouse-follow"></div>
         <header id="main-header">
 
-            <h1>Arthur Van Geersdaele <span class="fi fi-fr fis fi-addon"></span> <span class="fi fi-gb fis fi-addon"></span> </h1>
+            <h1>Arthur Van Geersdaele <span class="fi fi-be fis fi-addon"></span> <span class="fi fi-gb fis fi-addon"></span> </h1>
             <div class="profile-pic">
                 <img  src="https://avatars.githubusercontent.com/u/64006823?v=4" alt="Description of the image"> 
                 <div class="profile-pic-info-bubble"> <p>🦉</p></div>
@@ -822,7 +832,7 @@
                 </div>
 
             </div>
-            <p> <a href="mailto:arthurvg@gmail.com">  <i class="fa-solid fa-envelope"></i> Send Email</a> | <a href="https://www.linkedin.com/in/arthur-van-geersdaele-35189515b/"> <i class="fa-brands fa-linkedin"></i> LinkedIn </a></p>
+            <p> <a class="social" href="mailto:arthurvg@gmail.com">  <i class="fa-solid fa-envelope"></i> Send Email</a> | <a class="social" href="https://www.linkedin.com/in/arthur-van-geersdaele-35189515b/"> <i class="fa-brands fa-linkedin"></i> LinkedIn </a></p>
             <h2 class="shiny-text"> What is your organization about ? </h2>
             <div class="filters-container">
                 <button class="filter-delete " onclick="setAllFilterButtonsInactive()" data-status="inactive" title='reset all filters'><i class="fa-solid fa-rotate-left"></i></button>
@@ -848,6 +858,7 @@
                         <p class="keyword"> Hospital environment </p>
                         <p class="keyword"> Lab management </p>
                         <p class="keyword"> Quality Management </p>
+                        <p class="keyword"> ISO norms and standards </p>
                     </div>
                     <div class="experience-card-description">
                         <p> I currently work as a researcher for UCLouvain to develop a Point-of-Care 3D printing laboratory in collaboration with the CUSL and 3D-Side. This lab aims to manufacture anatomical models and surgical guides in the hospital. I had to define a Quality Management System for the theoretical lab, then build it from scratch. Then we continued with pre-clinical trials on the surgical guides obtained. </p>
@@ -871,7 +882,7 @@
                 <!-- Order of Malta -->
                 <div class="experience-card" onclick="showDescription(this)" data-filters="Medical Devices, Humanitarian Aid" data-status="inactive"> 
                     <p class="experience-card-title"> ODM National Camps, Healthcare Logistics</p>
-                    <p class="experience-card-date"> Started 4yr ago </p>
+                    <p class="experience-card-date"> Started 4yrs ago </p>
                     <div class="experience-card-keywords">
                         <p class="keyword"> Healthcare</p>
                         <p class="keyword"> Volunteering </p>
@@ -902,7 +913,7 @@
                 <!-- Kot So Pot -->
                 <div class="experience-card" onclick="showDescription(this)" data-filters="Web Design, Open-Source" data-status="inactive"> 
                     <p class="experience-card-title"> Kot So Pot, a collaborative party game</p>
-                    <p class="experience-card-date"> From 2023 to Today </p>
+                    <p class="experience-card-date">Started 2 yrs ago </p>
                     <div class="experience-card-keywords">
                         <p class="keyword"> Team work </p>
                         <p class="keyword"> Volunteering </p>
@@ -1166,6 +1177,8 @@
          <p>Template developed by Arthur VG DG.</p>
     <p>&copy; 2025 – Licensed under the Apache License, Version 2.0 (January 2004).</p>
     <p>According to the Apache License, you are permitted to adapt this code for your own use, provided you credit the original author.</p>
+    <p class="small">Flag icons used on this site are from the <a href="https://github.com/lipis/flag-icons">flag-icons project</a> by Panayiotis Lipiridis, licensed under the <a href="https://github.com/lipis/flag-icons/blob/main/LICENSE">MIT License</a>.</p>
+
     </footer>
 </body>
 
@@ -1239,10 +1252,16 @@
             '--mainColor': '#6d757a',
             '--white': '245, 240, 235',
             '--black': '10, 5, 0'
-        }
+        },
+        paper: {
+            '--mainColor': '#fffaed',//'#f9f8f6',
+            '--white': '42, 42, 42',
+            '--black': '245, 240, 235'
+        },
         
     };
-    setDefaultTheme('turquoise');
+    setDefaultTheme('paper');
+
     function setDefaultTheme(themeName){
         themes['default'] = themes[themeName];
         applyTheme('default');
@@ -1255,7 +1274,6 @@
             console.warn(`Theme "${themeName}" not found.`);
             return;
         }
-
         Object.entries(theme).forEach(([varName, value]) => {
             document.body.style.setProperty(varName, value);
         });
@@ -1270,14 +1288,17 @@
         const buttons = document.getElementsByClassName('filter-button');
         for (let i = 0; i < buttons.length; i++) {
             if (buttons[i].getAttribute("data-status") === "active") {
-                if(buttons[i].textContent.includes('Web Design')){
-                    // applyTheme('blue');
-                }
                 if(buttons[i].textContent.includes('Open-Source')){
                     applyTheme('terracotta');
                 }
                 if(buttons[i].textContent.includes('Humanitarian Aid')){
-                    //applyTheme('red');
+                    applyTheme('red');
+                }
+                if(buttons[i].textContent.includes('Medical Devices')){
+                    applyTheme('turquoise');
+                }
+                if(buttons[i].textContent.includes('Web Design')){
+                    applyTheme('black');
                 }
             }
         }
