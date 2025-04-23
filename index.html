@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
-    <title>MY CV</title>
+    <title> Arthur VG</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        *{
+            transition: color 0.2s ease;
+        }
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -20,6 +23,7 @@
             --y: 50%;
             --white: 241, 231, 254; /*235, 235, 235; */
             --black: 0, 0, 0;
+            --borderRadius: 3px;
             background: radial-gradient(
                 circle at var(--x) var(--y),
                 var(--mainColor) 0%,
@@ -28,7 +32,6 @@
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-size: cover;
-            transition: background-color 0.5s ease, background-image 0.5s ease;
             position: relative;
             overflow-x: hidden;
             user-select: none;
@@ -147,7 +150,7 @@
             width:400px;
             opacity:1;
             transform: scale(1);
-            border-radius:3px 25px 3px 3px;
+            border-radius:var(--borderRadius) 25px 0px 0px;
             margin:0px 0px 0px 0px;
             box-shadow: 2px 2px 6px 2px rgba(0,0,0, 0.2);
 
@@ -167,7 +170,7 @@
             min-height:30px;
             background-color: rgba(240, 240, 240, 1.0);
             outline: 3px solid rgba(240, 240, 240, 1.0);
-            border-radius:0px 0px 3px 3px;
+            border-radius:0px 0px var(--borderRadius) var(--borderRadius);
             z-index:999;
             padding-top:0.9em;
             padding-left:1px;
@@ -231,7 +234,6 @@
             color: rgba(var(--white), 0.6); /* translucent rgba(var(--white), 1) background */
             backdrop-filter: blur(5px); /* optional: subtle blur behind the button */
             border: none;
-            border-radius: 8px;
             font-size: 1rem;
             text-decoration: none;
         }
@@ -255,7 +257,7 @@
             border: none;
             padding: 0.5em 1em;
             margin:2px 5px 2px 5px;
-            border-radius: 8px;
+            border-radius: calc(2*var(--borderRadius));
             font-weight: bold;
             font-size: 1rem;
             text-decoration: none;
@@ -287,14 +289,15 @@
             max-width: 0;
             margin-left:0px;
             opacity: 0;
-            transition: max-width 0.5s ease, margin-left 0.5s ease, opacity 0.5s ease;
+            transition: max-width 0.5s ease, margin 0.5s ease, opacity 0.5s ease;
         }
 
         .filter-delete[data-status="active"] {
             max-width: 17px;
             margin-left:-17px;
+            margin-right:2px;
             opacity: 1;
-            transition: max-width 0.5s ease, margin-left 0.5s ease, opacity 0.5s ease;
+            transition: max-width 0.5s ease, margin 0.5s ease, opacity 0.5s ease;
 
         }
         .section {
@@ -334,7 +337,6 @@
             position: relative;
             cursor: pointer;
             background-color: transparent;
-            border-radius: 8px;
             padding: 2px 5px;
             margin-bottom: 4px;
             margin-left:-21.5px;
@@ -423,7 +425,7 @@
             color: var(--mainColor);
             padding: 0.2em;
             margin:1px 2px 1px 2px;
-            border-radius: 4px;
+            border-radius: var(--borderRadius);
         }
         .experience-card-description{
             position: relative; 
@@ -433,7 +435,7 @@
 
         }
         .experience-card[data-status="active"] .experience-card-description {
-            max-height: 150px;
+            max-height: 170px;
             opacity:1.0;
             overflow:hidden;
         }
@@ -464,7 +466,7 @@
             max-height:100px;
             padding: 0.5em 1em;
             margin:7px 7px;
-            border-radius: 2px;
+            border-radius: calc(var(--borderRadius)/2);
             font-weight: bold;
             font-size: 1rem;
             transition: max-height 0.5s ease-in-out;
@@ -514,10 +516,10 @@
             display:none;
             position:relative;
             bottom:-2px;
-            color: rgba(var(--black), 0.2);
+            color: rgba(0,0,0, 0.3);
             white-space: nowrap;
             font-family: 'Times New Roman', Times, serif;
-            font-size:1em;
+            font-size:0.7em;
             font-weight:400;
             font-style: italic;
             text-align: right;
@@ -547,7 +549,7 @@
             padding: 2px;
             margin:2px;
             margin-right:12px;
-            border-radius: 2px;
+            border-radius: calc(var(--borderRadius)/2);
         }
         .event-card-keywords .keyword:hover{
             background-color: var(--mainColor);
@@ -566,7 +568,7 @@
             background-color:rgba(255, 255, 255, 1);
             outline: solid 3px rgba(var(--white), 0.5);
             border: solid 5px var(--mainColor);
-            border-radius:8px;
+            border-radius: var(--borderRadius);
             z-index:1000;
             transition: transform 0.3s ease;
         }
@@ -635,7 +637,6 @@
         .event-card-description-reader .widget-zone{
             flex: 0 0 40%;
             height: 100%;
-            overflow-y: hidden;
             overflow-x: hidden;
             background-color: transparent; /* test visibility */
             box-sizing: border-box;
@@ -645,6 +646,9 @@
             width:100%;
             max-height:100%;
             background-color: transparent;
+             user-select: none;        /* Prevent text/image selection */
+            -webkit-user-drag: none;  /* Prevent dragging in WebKit browsers */
+            pointer-events: none;
         }
         .event-card-description-reader .widget-zone .event-card-skills-container{
             position: relative;
@@ -734,7 +738,7 @@
             margin-top: 10px;
             padding-left:5px;
             padding-top:2px;
-            border-radius: 8px 8px 8px 8px;
+            border-radius: calc(2*var(--borderRadius));
             background-color: rgba(var(--white), 0.05);
             font-size: 0.9rem;
             line-height: 1.2;
@@ -801,6 +805,39 @@
             border-radius:4px;
             opacity:0.8;
         }
+
+
+@media print {
+  /* Hide navigation and footer */
+  nav, footer {
+    display: none;
+  }
+
+  /* Adjust layout */
+  body {
+    transform:scale(0.7);
+    transform-origin: top left;
+
+    font-size: 12pt;
+  }
+
+  /* Ensure links are visible */
+  a:link:after, a:visited:after {
+    content: " (" attr(href) ")";
+  }
+
+  .mouse-light, .profile-pic, .profile-pic-info-bubble{
+    display:none;
+  }
+
+  /* Remove background colors and images */
+  * {
+    background: none !important;
+    color: black !important;
+  }
+}
+
+
     </style>
 </head>
 <body>
@@ -1037,7 +1074,7 @@
                     </p>
                     <div class="event-card-image-container">
                         <img class="event-card-image" src='https://arthurvangeersdaele.github.io/mycv/imgs/aaos_jnj.jpg'>
-                        <p class="event-card-image-description"></p> 
+                        <p class="event-card-image-description"> JnJ booth at AAOS 2025, San Diego, California. Author: Arthur VG DG.</p> 
                     </div>
                     <div class="event-card-skills-container">
                         <div class="event-card-keywords">
@@ -1177,7 +1214,7 @@
     <footer>
          <p>Template developed by Arthur VG DG.</p>
     <p>&copy; 2025 – Licensed under the Apache License, Version 2.0 (January 2004).</p>
-    <p>According to the Apache License, you are permitted to adapt this code for your own use, provided you credit the original author.</p>
+    <p>According to the Apache License, you are permitted to adapt <a href="https://github.com/arthurvangeersdaele/mycv">this code</a> for your own use, provided you credit the original author.</p>
     <p class="small">Flag icons used on this site are from the <a href="https://github.com/lipis/flag-icons">flag-icons project</a> by Panayiotis Lipiridis, licensed under the <a href="https://github.com/lipis/flag-icons/blob/main/LICENSE">MIT License</a>.</p>
 
     </footer>
@@ -1219,10 +1256,15 @@
             '--white': '235, 235, 235',
             '--black': '0, 0, 0'
         },
-        blue: {
-            '--mainColor': '#609dbf',
-            '--white': '245, 245, 245',
-            '--black': '31, 51, 63'
+        sky: {
+            '--mainColor': '#7bc1fa',
+            '--white': '255, 251, 223',
+            '--black': '117, 170, 240'
+        },
+        tron: {
+            '--mainColor': '#3f8996',
+            '--white': '202, 243, 247',
+            '--black': '1, 14, 23'
         },
         provence: {
             '--mainColor': '#7ba0fc',
@@ -1259,6 +1301,16 @@
             '--white': '42, 42, 42',
             '--black': '245, 240, 235'
         },
+        paper_blue: {
+            '--mainColor': '#d2e9ff',
+            '--white': '42, 42, 42',
+            '--black': '236, 245, 255'
+        },
+        paper_red: {
+            '--mainColor': '#f7f8fa',
+            '--white': '167, 0, 0',
+            '--black': '251, 252, 255'
+        },
         
     };
     setDefaultTheme('paper');
@@ -1290,16 +1342,16 @@
         for (let i = 0; i < buttons.length; i++) {
             if (buttons[i].getAttribute("data-status") === "active") {
                 if(buttons[i].textContent.includes('Open-Source')){
-                    applyTheme('terracotta');
+                    applyTheme('sky');
                 }
                 if(buttons[i].textContent.includes('Humanitarian Aid')){
-                    applyTheme('red');
+                    applyTheme('paper_red');
                 }
                 if(buttons[i].textContent.includes('Medical Devices')){
-                    applyTheme('turquoise');
+                    applyTheme('tron');
                 }
                 if(buttons[i].textContent.includes('Web Design')){
-                    applyTheme('black');
+                    applyTheme('tron');
                 }
             }
         }
@@ -1400,6 +1452,27 @@
             experienceCard.setAttribute("data-status", "active");
             
         }
+    }
+
+    function showAllDescription() {
+        const cards = document.querySelectorAll('.experience-card');
+        cards.forEach(card => {
+            // const desc = card.querySelector('.experience-card-description');
+            // if (desc) desc.setAttribute("data-status", "inactive");
+            card.setAttribute("data-status", "active");
+            card.querySelector(".experience-card-date").style.opacity = 1.0;
+            card.querySelector(".experience-card-date").style.color = 'black';
+            card.querySelector(".experience-card-date").style.fontSize = 0.9 + 'em';
+        });
+        const eventCards = document.querySelectorAll('.event-card');
+        eventCards.forEach(card => {
+            card.style.maxWidth = 100 +'%';
+            
+            card.style.maxHeight = '100vh';
+            card.style.height = 'auto';
+
+            card.querySelector(".event-card-description").style.display="block";
+        });
     }
 
     function showEventDescription(eventCard){
@@ -1570,5 +1643,23 @@
       element.addEventListener('click', onClick);  // Add click listener to reset the timer
 
     });
+
+    //printing management
+
+    // Function to execute before printing
+    function beforePrint() {
+        showAllDescription();
+    }
+
+    // Function to execute after printing
+    function afterPrint() {
+
+    }
+
+    // Attach the functions to the print events
+    window.onbeforeprint = beforePrint
+    window.onafterprint = afterPrint;
+
+
 </script>
 </html>
