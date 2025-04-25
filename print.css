@@ -1,0 +1,100 @@
+/*@media print {*/
+  body {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-only{
+    display:block;
+  }
+
+  .no-print{
+    display:none;
+  }
+
+  /* Hide interactive or decorative elements */
+  .mouse-light,
+  .mouse-follow,
+  .profile-pic-info-bubble,
+  .profile-pic-about-me,
+  .filters-container,
+  .filter-button,
+  .filter-delete,
+  .shiny-text,
+  footer,
+  .timeline-start,
+  .timeline-end,
+  .event-card-image-container,
+  .event-card-image-description,
+  .event-card-description-reader,
+  .opaque {
+    display: none;
+  }
+
+  /* Card styles */
+  .experience-card,
+  .event-card,
+  .recommendation-card {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    background: #fefefe;
+  }
+
+  .section-title {
+    font-size: 14pt;
+    margin-top: 30px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
+  }
+
+  /* Title and date inline */
+  .experience-card-title,
+  .event-card-title {
+    font-weight: bold;
+    font-size: 12pt;
+    display: inline-block;
+    width: 70%;
+  }
+
+  .experience-card-date,
+  .event-card-date {
+    display: inline-block;
+    width: 28%;
+    text-align: right;
+    font-size: 10pt;
+  }
+
+  /* Keywords inline with wrapping */
+  .experience-card-keywords,
+  .event-card-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 8px 0;
+  }
+
+  .experience-card-keywords .keyword,
+  .event-card-keywords .keyword {
+    background: #eaeaea;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 9pt;
+  }
+
+  a {
+    color: black;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100px;
+    height: auto;
+  }
+/*}*/
