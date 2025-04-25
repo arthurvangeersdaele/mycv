@@ -1,4 +1,4 @@
-@media not print and screen and (min-width: 769px) {
+@media not print and (min-width: 769px) {
     *{
         transition: color 0.2s ease;
     }
