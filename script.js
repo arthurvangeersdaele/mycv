@@ -447,12 +447,55 @@ window.addEventListener('resize', updateStylesheets);
 
 // Function to execute before printing
 function beforePrint() {
-    // Disable desktop.css
-    document.getElementById('desktop-css').setAttribute('media', 'none');
-    // Disable mobile.css
-    document.getElementById('mobile-css').setAttribute('media', 'none');
-    // Enable print.css
-    document.getElementById('print-css').setAttribute('media', 'screen');
+    document.getElementById('print-css').setAttribute('media', 'print');
+}
+
+function goToPrint(){
+    let color = 'var(--white)';
+     // Save original overflow setting
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    // Create overlay
+    const overlay = document.createElement('div');
+    overlay.id = 'print-overlay';
+    Object.assign(overlay.style, {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: 'transparent',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 9999,
+        textAlign: 'center'
+    });
+
+    // Create message
+    const message = document.createElement('div');
+    message.textContent = 'PRESS CTRL-P';
+    Object.assign(message.style, {
+        color: color,
+        fontWeight: 'bold',
+        width: '50vw',
+        fontSize: '10vw', // Scale font size to half screen width
+        lineHeight: '1',
+        userSelect: 'none',
+        textShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' // Add subtle shadow
+    });
+
+    overlay.appendChild(message);
+    document.body.appendChild(overlay);
+
+    // Remove overlay after 1.5 seconds
+    setTimeout(() => {
+        if (overlay && overlay.parentNode) {
+            overlay.parentNode.removeChild(overlay);
+        }
+        document.body.style.overflow = originalOverflow;
+    }, 1500);
 }
 
 // Function to execute after printing

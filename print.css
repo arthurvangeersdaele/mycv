@@ -1,3 +1,4 @@
+
 body {
   font-family: 'Helvetica', 'Arial', sans-serif;
   line-height: 1.6;
@@ -14,6 +15,10 @@ body {
 
 .no-print{
   display:none;
+}
+
+.new-page {
+    page-break-before: always;
 }
 
 /* Hide interactive or decorative elements */
@@ -96,3 +101,4 @@ img {
   max-width: 100px;
   height: auto;
 }
+
