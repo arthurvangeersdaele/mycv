@@ -1,4 +1,4 @@
-@media (max-width: 768px) and (not print) {
+@media screen and (not print) {
 	body{
 		background-color:red;
 	}
