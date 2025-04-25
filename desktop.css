@@ -1,43 +1,42 @@
-@media not print and (min-width: 769px) {
-    *{
-        transition: color 0.2s ease;
-    }
-    body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        color: #333;
-        margin: 20px;
-        --mainColor: rgb(102, 51, 153);/*#377f5d ;*/
-        --x: 50%;
-        --y: 50%;
-        --white: 241, 231, 254; /*235, 235, 235; */
-        --black: 0, 0, 0;
-        --borderRadius: 3px;
-        background: radial-gradient(
-            circle at var(--x) var(--y),
-            var(--mainColor) 0%,
-            rgba(var(--black), 1) 200%
-        );
-        background-attachment: fixed;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-        overflow-x: hidden;
-        user-select: none;
-    }
-    body.noscroll {
-      overflow: hidden;
-  }
-  body::-webkit-scrollbar {
-      display: none; 
-  }
+*{
+    transition: color 0.2s ease;
+}
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 20px;
+    --mainColor: rgb(102, 51, 153);/*#377f5d ;*/
+    --x: 50%;
+    --y: 50%;
+    --white: 241, 231, 254; /*235, 235, 235; */
+    --black: 0, 0, 0;
+    --borderRadius: 3px;
+    background: radial-gradient(
+        circle at var(--x) var(--y),
+        var(--mainColor) 0%,
+        rgba(var(--black), 1) 200%
+    );
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow-x: hidden;
+    user-select: none;
+}
+body.noscroll {
+  overflow: hidden;
+}
+body::-webkit-scrollbar {
+  display: none; 
+}
 
-  body {
-      -ms-overflow-style: none; 
-  }
-  *::-webkit-scrollbar {
+body {
+  -ms-overflow-style: none; 
+}
+*::-webkit-scrollbar {
 
-  }
+}
 /* Scrollbar Track */
 *::-webkit-scrollbar-track {
   height:10px;  /* Set the visible track color */
@@ -801,4 +800,3 @@ footer p.small, footer p.small a{
     opacity:0.8;
 }
 
-}

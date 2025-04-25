@@ -423,13 +423,41 @@ document.querySelectorAll('button, .experience-card, .event-card').forEach(eleme
 
 //printing management
 
+// Function to update media attributes based on conditions
+function updateStylesheets() {
+  // Check if we are on a mobile device
+  // Disable print.css
+  document.getElementById('print-css').setAttribute('media', 'none');
+  if (window.innerWidth <= 768) {
+    // Enable mobile.css by setting the media query for mobile
+    document.getElementById('mobile-css').setAttribute('media', 'screen and (max-width: 768px)');
+    // Disable desktop.css
+    document.getElementById('desktop-css').setAttribute('media', 'none');
+  } else {
+    // Enable desktop.css for larger screens
+    document.getElementById('desktop-css').setAttribute('media', 'screen');
+    // Disable mobile.css for larger screens
+    document.getElementById('mobile-css').setAttribute('media', 'none');
+  }
+}
+
+// Update styles on page load and window resize
+window.addEventListener('load', updateStylesheets);
+window.addEventListener('resize', updateStylesheets);
+
 // Function to execute before printing
 function beforePrint() {
+    // Disable desktop.css
+    document.getElementById('desktop-css').setAttribute('media', 'none');
+    // Disable mobile.css
+    document.getElementById('mobile-css').setAttribute('media', 'none');
+    // Enable print.css
+    document.getElementById('print-css').setAttribute('media', 'screen');
 }
 
 // Function to execute after printing
 function afterPrint() {
-
+    updateStylesheets();
 }
 
 // Attach the functions to the print events
