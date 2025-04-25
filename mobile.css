@@ -1,5 +1,5 @@
 @media screen and (not print) {
 	body{
-		background-color:red;
+		background-color:red !important;
 	}
 }
