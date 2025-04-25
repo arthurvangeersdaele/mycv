@@ -1,4 +1,4 @@
-/*@media print {*/
+@media print {
   body {
     font-family: 'Helvetica', 'Arial', sans-serif;
     line-height: 1.6;
@@ -97,4 +97,4 @@
     max-width: 100px;
     height: auto;
   }
-/*}*/
+}
