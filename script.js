@@ -425,19 +425,39 @@ document.querySelectorAll('button, .experience-card, .event-card').forEach(eleme
 
 // Function to update media attributes based on conditions
 function updateStylesheets() {
-  // Check if we are on a mobile device
-  // Disable print.css
-  document.getElementById('print-css').setAttribute('media', 'none');
-  if (window.innerWidth <= 768) {
-    // Enable mobile.css by setting the media query for mobile
-    document.getElementById('mobile-css').setAttribute('media', 'screen and (max-width: 768px)');
-    // Disable desktop.css
-    document.getElementById('desktop-css').setAttribute('media', 'none');
+  // Always remove print stylesheet
+  var printCss = document.getElementById('print-css');
+  if (printCss) printCss.remove();
+
+  var desktopCss = document.getElementById('desktop-css');
+  var mobileCss = document.getElementById('mobile-css');
+
+  if (window.innerWidth >= 768) {
+    // Desktop view
+    if (!desktopCss) {
+      // Add Desktop CSS
+      desktopCss = document.createElement('link');
+      desktopCss.rel = 'stylesheet';
+      desktopCss.id = 'desktop-css';
+      desktopCss.href = 'desktop.css';
+      desktopCss.media = 'screen and (min-width: 768px)';
+      document.head.appendChild(desktopCss);
+    }
+    // Remove Mobile CSS if exists
+    if (mobileCss) mobileCss.remove();
   } else {
-    // Enable desktop.css for larger screens
-    document.getElementById('desktop-css').setAttribute('media', 'screen');
-    // Disable mobile.css for larger screens
-    document.getElementById('mobile-css').setAttribute('media', 'none');
+    // Mobile view
+    if (!mobileCss) {
+      // Add Mobile CSS
+      mobileCss = document.createElement('link');
+      mobileCss.rel = 'stylesheet';
+      mobileCss.id = 'mobile-css';
+      mobileCss.href = 'mobile.css';
+      mobileCss.media = 'screen and (max-width: 767px)';
+      document.head.appendChild(mobileCss);
+    }
+    // Remove Desktop CSS if exists
+    if (desktopCss) desktopCss.remove();
   }
 }
 
@@ -445,64 +465,88 @@ function updateStylesheets() {
 window.addEventListener('load', updateStylesheets);
 window.addEventListener('resize', updateStylesheets);
 
-// Function to execute before printing
-function beforePrint() {
-    document.getElementById('print-css').setAttribute('media', 'print');
+
+// Function to launch printing (same as ctrl-p)
+function doPrint() {
+    // Remove desktop and mobile stylesheets
+    var desktopCss = document.getElementById('desktop-css');
+    if (desktopCss) desktopCss.remove();
+
+    var mobileCss = document.getElementById('mobile-css');
+    if (mobileCss) mobileCss.remove();
+
+    // Add print stylesheet
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.id = 'print-css';
+    link.href = 'print.css'; // Update this path to your print CSS file
+    document.head.appendChild(link);
+
+    // Wait for the stylesheet to load, then print
+    link.onload = function() {
+        if (window.matchMedia) {
+          var mediaQueryList = window.matchMedia('print');
+          mediaQueryList.addEventListener('change', function(mql) {
+            if (!mql.matches) {
+                updateStylesheets();
+            }
+          });
+        }
+        window.print();
+    };
 }
 
-function goToPrint(){
-    let color = 'var(--white)';
-     // Save original overflow setting
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
 
-    // Create overlay
-    const overlay = document.createElement('div');
-    overlay.id = 'print-overlay';
-    Object.assign(overlay.style, {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'transparent',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 9999,
-        textAlign: 'center'
-    });
+// Function to execute before printing
+function beforePrint() {
+  // Remove desktop and mobile stylesheets
+  var desktopCss = document.getElementById('desktop-css');
+  if (desktopCss) desktopCss.remove();
+  var mobileCss = document.getElementById('mobile-css');
+  if (mobileCss) mobileCss.remove();
 
-    // Create message
-    const message = document.createElement('div');
-    message.textContent = 'PRESS CTRL-P';
-    Object.assign(message.style, {
-        color: color,
-        fontWeight: 'bold',
-        width: '50vw',
-        fontSize: '10vw', // Scale font size to half screen width
-        lineHeight: '1',
-        userSelect: 'none',
-        textShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' // Add subtle shadow
-    });
+  // Add print stylesheet
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.id = 'print-css';
+  link.href = 'print.css'; // Update this path to your print CSS file
+  document.head.appendChild(link);
 
-    overlay.appendChild(message);
-    document.body.appendChild(overlay);
-
-    // Remove overlay after 1.5 seconds
-    setTimeout(() => {
-        if (overlay && overlay.parentNode) {
-            overlay.parentNode.removeChild(overlay);
-        }
-        document.body.style.overflow = originalOverflow;
-    }, 1500);
 }
 
 // Function to execute after printing
 function afterPrint() {
-    updateStylesheets();
+    updateStylesheets(); 
 }
 
 // Attach the functions to the print events
 window.onbeforeprint = beforePrint
 window.onafterprint = afterPrint;
+
+// update last updated
+async function updateLastUpdated() {
+  const apiUrl = "https://api.github.com/repos/arthurvangeersdaele/mycv/commits?path=index.html";
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (data.length > 0) {
+      const lastCommitDate = new Date(data[0].commit.committer.date);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = lastCommitDate.toLocaleDateString('en-US', options);
+
+      // Update the DOM
+      const smallText = document.querySelector('.last-updated');
+      if (smallText) {
+        smallText.innerHTML = `Last updated: ${formattedDate}.`;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching last commit date:", error);
+  }
+}
+
+// Call the function on page load
+
+window.addEventListener('load',  updateLastUpdated() );

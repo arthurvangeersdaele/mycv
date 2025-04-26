@@ -1,6 +1,17 @@
-body{
-	background-color:red;
+body {
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto;   /* Allow vertical scroll */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* Hide scrollbar - cross-browser */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
+
 .print-only{
     display:none;
 }
@@ -10,4 +21,19 @@ body{
 
 .no-mobile{
     display:none;
+}
+
+.profile-pic{
+    position:relative;
+    top:0;
+    right:0;
+    width:100vw;
+    height:100vw;
+}
+
+.profile-pic img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* crops the image properly */
+    object-position: center;
 }

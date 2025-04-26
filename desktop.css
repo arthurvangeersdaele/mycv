@@ -87,7 +87,7 @@ body {
             width:200px;
             border-radius:50%;
             padding:0px;
-            margin-right:-180px;
+            margin-left:-180px;
             background-color: rgba(var(--white), 1);
             outline: 5px solid rgba(var(--white), 0.3);
             
@@ -542,12 +542,13 @@ transition: max-height 0.5s ease-in-out;
     width:auto;
     padding: 2px;
     margin:2px;
-    margin-right:12px;
+    margin-left:10px;
+    margin-right:15px;
     border-radius: calc(var(--borderRadius)/2);
 }
 .event-card-keywords .keyword:hover{
-    background-color: var(--mainColor);
-    color: rgba(var(--white), 1.0);
+   /* background-color: var(--mainColor);
+    color: rgba(var(--white), 1.0);*/
 }
 .event-card-description-reader{
     position: fixed;
