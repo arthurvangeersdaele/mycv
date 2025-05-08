@@ -84,9 +84,14 @@ let themes = {
         '--black': '236, 245, 255'
     },
     paper_red: {
-        '--mainColor': '#f7f8fa',
+        '--mainColor': '#fffaed',//'#f7f8fa',
         '--white': '167, 0, 0',
         '--black': '251, 252, 255'
+    },
+    geek: {
+        '--mainColor': '#111111',
+        '--white': '225, 225, 235',
+        '--black': '88, 101, 242',
     },
     
 };
@@ -118,8 +123,8 @@ function setMainColorTo(btn, nActive) {
     const buttons = document.getElementsByClassName('filter-button');
     for (let i = 0; i < buttons.length; i++) {
         if (buttons[i].getAttribute("data-status") === "active") {
-            if(buttons[i].textContent.includes('Open-Source')){
-                applyTheme('sky');
+            if(buttons[i].textContent.includes('3D Printing')){
+                applyTheme('purple');
             }
             if(buttons[i].textContent.includes('Humanitarian Aid')){
                 applyTheme('paper_red');
@@ -128,7 +133,10 @@ function setMainColorTo(btn, nActive) {
                 applyTheme('tron');
             }
             if(buttons[i].textContent.includes('Web Design')){
-                applyTheme('tron');
+                applyTheme('geek');
+            }
+            if(buttons[i].textContent.includes('Open-Source')){
+                applyTheme('terracotta');
             }
         }
     }

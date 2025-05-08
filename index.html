@@ -24,7 +24,7 @@
         <div class="mouse-follow"></div>
         <header id="main-header">
 
-            <h1>Arthur Van Geersdaele <span class="fi fi-be fis fi-addon no-print"></span> <span class="fi fi-gb fis fi-addon no-print"></span> </h1>
+            <h1>Arthur Van Geersdaele <span class="fi fi-be fis fi-addon no-print no-mobile"></span> <span class="fi fi-gb fis fi-addon no-print no-mobile"></span> </h1>
             <div class="profile-pic">
                 <img  src="https://avatars.githubusercontent.com/u/64006823?v=4" alt="Arthur VG DG"> 
                 <div class="profile-pic-info-bubble no-print"> <p>🦉</p></div>
@@ -38,7 +38,7 @@
                         <button onclick="goTo('https://www.16personalities.com/fr/profils/7848f97eea5ea')"> 
                             <img src="https://www.16personalities.com/favicon.ico" alt="Icon"> ENFP-T 
                         </button>
-                        <button onclick="goTo('https://youtu.be/cAG_-GXDGME')"> <i class="fa-solid fa-star"></i> my favorite song </button>
+                        <button onclick="goTo('https://open.spotify.com/user/azur42/playlists')"> <i class="fa-solid fa-star"></i> my playlists </button>
                         <button onclick="goTo('https://www.linkedin.com/in/arthur-van-geersdaele-35189515b/')"> <i class="fa-brands fa-linkedin"></i> LinkedIn </button> 
                         <button onclick="goTo('https://www.instagram.com/arthur_vgdg/')"> <i class="fa-brands fa-instagram"></i> arthur_vgdg </button>
                         <button onclick="goTo('https://github.com/arthurvangeersdaele')"> <i class="fa-brands fa-github"></i> github </button>
@@ -46,7 +46,7 @@
                 </div>
 
             </div>
-            <p class="no-print"> 
+            <p class="no-print no-mobile"> 
                 <a class="social" href="mailto:arthurvg@gmail.com">  <i class="fa-solid fa-envelope"></i> Send Email</a> | 
                 <a class="social no-mobile" onclick="doPrint();" href="#"> <i class="fa-solid fa-print"></i> Print/PDF </a>
             </p>
@@ -56,8 +56,8 @@
                     I want to focus my career on accessible or open-source healthcare technologies, with an affinity for humanitarian organizations. I received a lot, I want to give it back. Give me a call :)
             </p>
 
-            <h2 class="shiny-text no-print"> What is your organization about ? </h2>
-            <div class="filters-container no-print">
+            <h2 class="shiny-text no-print no-mobile"> What is your organization about ? </h2>
+            <div class="filters-container no-print no-mobile">
                 <button class="filter-delete " onclick="setAllFilterButtonsInactive()" data-status="inactive" title='reset all filters'><i class="fa-solid fa-rotate-left"></i></button>
                 <button class="filter-button " onclick="toggleFilterButton(this); " data-status="inactive"> Medical Devices </button>
                 <button class="filter-button " onclick="toggleFilterButton(this); " data-status="inactive"> Humanitarian Aid</button>
@@ -71,7 +71,7 @@
         <section class="section">
             <h2 class="section-title">We are shaped by our experiences</h2>
             <div class="spacer"> </div>
-            <div class="timeline-end"> </div>
+            <div class="timeline-end no-mobile no-print"> </div>
             <div class="experience-cards-container">
                 <!-- POC3DP -->
                 <div class="experience-card" onclick="showDescription(this)" data-filters="Medical Devices, 3D Printing" data-status="inactive"> 
@@ -207,7 +207,7 @@
                 </div>
             </div>
 
-            <div class="timeline-start">
+            <div class="timeline-start no-mobile no-print">
                 <i class="fa-solid fa-book-open"></i>
             </div>
         </section>
@@ -260,7 +260,7 @@
                         <br><br>To minimize expenses from my research funding, I opted to stay at the Gaslamp Hostel. This choice allowed me to meet both locals and fellow travelers, providing a rich cultural experience and a deeper understanding of Southern U.S. culture.
                     </p>
                     <div class="event-card-image-container">
-                        <img class="event-card-image" src='../imgs/aaos_jnj.jpg'>
+                        <img class="event-card-image" src='https://arthurvangeersdaele.github.io/mycv/imgs/aaos_jnj.jpg'>
                         <p class="event-card-image-description"> JnJ booth at AAOS 2025, San Diego, California. Author: Arthur VG DG.</p> 
                     </div>
                     <div class="event-card-skills-container">
