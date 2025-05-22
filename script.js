@@ -478,7 +478,7 @@ function updateStylesheets() {
       desktopCss = document.createElement('link');
       desktopCss.rel = 'stylesheet';
       desktopCss.id = 'desktop-css';
-      desktopCss.href = 'desktop.css';
+      desktopCss.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' + 'desktop.css';
       desktopCss.media = 'screen and (min-width: 768px)';
       document.head.appendChild(desktopCss);
     }
@@ -491,7 +491,7 @@ function updateStylesheets() {
       mobileCss = document.createElement('link');
       mobileCss.rel = 'stylesheet';
       mobileCss.id = 'mobile-css';
-      mobileCss.href = 'mobile.css';
+      mobileCss.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' +  'mobile.css';
       mobileCss.media = 'screen and (max-width: 767px)';
       document.head.appendChild(mobileCss);
     }
@@ -518,7 +518,8 @@ function doPrint() {
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.id = 'print-css';
-    link.href = 'print.css'; // Update this path to your print CSS file
+    link.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' + 'print.css'; // Update this path to your print CSS file
+
     document.head.appendChild(link);
 
     // Wait for the stylesheet to load, then print
@@ -548,7 +549,7 @@ function beforePrint() {
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.id = 'print-css';
-  link.href = 'print.css'; // Update this path to your print CSS file
+  link.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' + 'print.css'; // Update this path to your print CSS file
   document.head.appendChild(link);
 
 }
