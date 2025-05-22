@@ -13,6 +13,7 @@
     <link id="mobile-css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/mobile.css"media="screen and (max-width: 768px)">
     <link id="print-css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/print.css">
 
+
 </head>
 <body>
 
@@ -28,7 +29,7 @@
 
             <h1>[USER NAME] <span class="fi fi-be fis fi-addon no-print no-mobile"></span> <span class="fi fi-gb fis fi-addon no-print no-mobile"></span> </h1>
             <div class="profile-pic">
-                <img  src="[USER LINK TO A PROFILE PIC]" alt="[USER NAME]"> 
+                <img  src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Default_pfp.jpg" alt="[USER PROFILE PIC LINK]"> 
                 <div class="profile-pic-info-bubble no-print"> <p>👋</p></div>
                 <div class="profile-pic-about-me no-print">
                     <p> Hey ! </p>
@@ -52,11 +53,42 @@
                 <a class="social" href="mailto:[USER EMAIL]">  <i class="fa-solid fa-envelope"></i> Send Email</a> | 
                 <a class="social no-mobile" onclick="doPrint();" href="#"> <i class="fa-solid fa-print"></i> Print/PDF </a>
             </p>
-            <p class="print-only"> 
-                    [USER PHONE NUMBER] <br> [USER EMAIL] <br> [OTHER USER INFO] <br><br>
+            <div class="print-only"> 
+                   <!--  [USER PHONE NUMBER] <br> [USER EMAIL] <br> [OTHER USER INFO] <br><br>
 
-                    [USER SHORT TALK FOR PRINTED CV]
-            </p>
+                    [USER SHORT TALK FOR PRINTED CV] -->
+                     <div><strong>Phone:</strong> <span >[USER PHONE NUMBER]</span></div>
+                     <div><strong>Email:</strong> <span >[USER EMAIL]</span></div>
+                     <div><strong>Location:</strong> <span >[USER LOCATION]</span></div>
+                     <br>
+                     <div><strong>Languages:</strong> <span >[USER SPOKEN LANGUGES (with levels)]</span></div>
+                     <div><strong>Educational degree:</strong> <span >[USER HIGHER DIPLOMA]</span></div>
+                     <div><strong>Driving license:</strong> <span >[USER DRIVING LICENSE]</span></div>
+                    <br>
+                    <br>
+                    <div><strong>General motivational note</strong></div>
+                    <div >
+                        [USER GENERAL MOTIVATIONAL NOTE]
+                    </div>
+                    <br>
+                    <div><strong>Career quick-view:</strong></div>
+                    <div >
+                         <ul class="bullet-list">
+                            <li>[USER POSITION, COMPANY, DATES]</li>
+                            <li>[USER POSITION, COMPANY, DATES]</li>
+                            <li>[USER POSITION, COMPANY, DATES]</li>
+                          </ul>
+                    </div>
+                    <br>
+                    <div><strong>Highlighted skills:</strong></div>
+                    <div >
+                         <ul class="bullet-list">
+                            <li>[USER SKILL]</li>
+                            <li>[USER SKILL]</li>
+                            <li>[USER SKILL]</li>
+                          </ul>
+                    </div>
+            </div>
 
             <h2 class="shiny-text no-print no-mobile"> What is your organization about ? </h2>
             <div class="filters-container no-print no-mobile">
@@ -70,7 +102,7 @@
             <div class="spacer no-print"> </div>
         </header>
 
-        <section class="section">
+        <section class="section new-page">
             <h2 class="section-title">We are shaped by our experiences</h2>
             <div class="spacer"> </div>
             <div class="timeline-end no-mobile no-print"> </div>
@@ -143,9 +175,7 @@
             </div>
         </section>
 
-        <div class="new-page print-only"></div>
-
-        <section class="section">
+        <section class="section new-page">
             <h2 class="section-title">I also earned skills from these events</h2>
             <div id="eventDescriptionReader" class="event-card-description-reader" data-status="inactive">
                 <div class="text-zone"> </div>
@@ -154,7 +184,7 @@
 
             <div class="event-cards-container">
                 <!-- USER EVENT 1 -->
-                <div id="enable" class="event-card" onclick="showEventDescription(this)" data-filters="Filter 1, Filter 2" data-status="inactive"> 
+                <div id="enable" class="event-card" onclick="showEventDescription(this)" data-filters="Field 1, Field 2" data-status="inactive"> 
                     <p class="event-card-title"> [USER EVENT TITLE]  </p>
                     <p class="event-card-date"> [USER EVENT DATE/SEASON] </p>
                     <p class="event-card-description">
@@ -175,7 +205,7 @@
                 </div>
 
                 <!-- USER EVENT 2 -->
-                <div id="enable" class="event-card" onclick="showEventDescription(this)" data-filters="Filter 1, Filter 2" data-status="inactive"> 
+                <div id="enable" class="event-card" onclick="showEventDescription(this)" data-filters=" Field 2" data-status="inactive"> 
                     <p class="event-card-title"> [USER EVENT TITLE]  </p>
                     <p class="event-card-date"> [USER EVENT DATE/SEASON] </p>
                     <p class="event-card-description">
@@ -196,7 +226,7 @@
                 </div>
 
                 <!-- USER EVENT 3 -->
-                <div id="enable" class="event-card" onclick="showEventDescription(this)" data-filters="Filter 1, Filter 2" data-status="inactive"> 
+                <div id="enable" class="event-card" onclick="showEventDescription(this)" data-filters="Field 3" data-status="inactive"> 
                     <p class="event-card-title"> [USER EVENT TITLE]  </p>
                     <p class="event-card-date"> [USER EVENT DATE/SEASON] </p>
                     <p class="event-card-description">
@@ -221,7 +251,7 @@
 
         <!-- USER DUPLICATE EVENTS AS NEEDED -->
 
-        <section class="section">
+        <section class="section new-page">
             <h2 class="section-title"> We worked together </h2>
             <div class="recommendation-card" onclick="">
                 <p class="recommendation-card-author"> [USER ORGANISATION NAME] - [USER REFERENCE NAME] </p>

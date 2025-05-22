@@ -146,6 +146,7 @@ function toggleFilterButton(btn) {
     const dels = document.getElementsByClassName('filter-delete');
     const buttons = document.getElementsByClassName('filter-button');
     const cards = document.querySelectorAll('.experience-card');
+    const events = document.querySelectorAll('.event-card');
 
 
     const current = btn.getAttribute("data-status");
@@ -158,6 +159,8 @@ function toggleFilterButton(btn) {
     // Check if any filter button is active
     let nActive = 0;
     let anyCard = false;
+    let anyEvent = false;
+    setAllEventCardsHidden();
     setAllExperienceCardsHidden();
     for (let i = 0; i < buttons.length; i++) {
         console.log(i);
@@ -168,6 +171,13 @@ function toggleFilterButton(btn) {
                 if (filters.includes(buttons[i].textContent.trim()) || filters.includes('All')) {
                     card.style.display = 'block';
                     anyCard = true;
+                } 
+            });
+            events.forEach(event => {
+                const filters = event.getAttribute('data-filters');
+                if (filters.includes(buttons[i].textContent.trim()) || filters.includes('All')) {
+                    event.style.display = 'block';
+                    anyEvent = true;
                 } 
             });
         }
@@ -184,11 +194,19 @@ function toggleFilterButton(btn) {
             card.style.display = 'block';
             anyCard = true;
         });
+        events.forEach(event => {
+            event.style.display = 'block';
+            anyEvent = true;
+        });
     }
 
     // alert if no card displayed
     if(! anyCard){
-        alert('no experience found');
+        alert('no experience found, filter may be irrelevant');
+    }
+
+    if(! anyEvent){
+        alert('no event found, filter may be irrelevant');
     }
     
 }
@@ -199,6 +217,14 @@ function setAllExperienceCardsHidden(){
         card.style.display = 'none';
     });
 }
+
+function setAllEventCardsHidden(){
+    const cards = document.querySelectorAll('.event-card');
+    cards.forEach(card => {
+        card.style.display = 'none';
+    });
+}
+
 function setAllFilterButtonsInactive(){
     const dels = document.getElementsByClassName('filter-delete');
     const buttons = document.getElementsByClassName('filter-button');
@@ -212,6 +238,11 @@ function setAllFilterButtonsInactive(){
     const cards = document.querySelectorAll('.experience-card');
     cards.forEach(card => {
         card.style.display = 'block';
+    });
+
+    const events = document.querySelectorAll('.event-card');
+    events.forEach(event => {
+        event.style.display = 'block';
     });
 
     applyTheme('default');
