@@ -7,6 +7,13 @@ body {
   padding: 0.5rem;
   box-sizing: border-box;
 
+   --mainColor: rgb(102, 51, 153);/*#377f5d ;*/
+    --x: 50%;
+    --y: 50%;
+    --white: 241, 231, 254; /*235, 235, 235; */
+    --black: 0, 0, 0;
+    --borderRadius: 3px;
+
   /* Hide scrollbar - cross-browser */
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -96,19 +103,56 @@ body {
     padding: 0;
   }
 
-  .experience-card,
-  .event-card {
+  .experience-card {
+    position:relative;
     border: none;
     box-shadow: none;
     padding: 0.5rem;
     background: #f9f9f9;
     border-radius: 0.5rem;
+    border:solid rgba(0, 0, 0, 0.1) 2px;
+  }
+
+
+  .event-card{
+    display:none;
   }
 
   /* Hide dates */
   .experience-card-date,
   .event-card-date {
-    display: none;
+    position: absolute;
+    right:10px;
+    top:0;
+    padding:0;
+    margin: 1em 0 0.5em;
+    font-size: 0.7em;
+    font-weight: 700;
+    opacity:0.5;
+  }
+
+   /* Keyword formatting */
+
+.experience-card-keywords{
+    position: relative;
+    margin-top:2px;
+    overflow:hidden;
+    display:flex;
+    transition: transform 0.3s ease;
+    transform-origin: left;
+    display: flex;
+    align-items: flex-start;
+}
+.experience-card-keywords .keyword{
+    font-size:0.8em;
+    line-height: 0.8;
+    background-color: rgba(var(--white), 0.5);
+    color: var(--mainColor);
+    padding: 0.2em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    margin:1px 2px 1px 2px;
+    border-radius: var(--borderRadius);
   }
 
   /* Collapse keywords and descriptions */
