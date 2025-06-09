@@ -1,5 +1,8 @@
 //global variables 
 let automaticScrollEnabled = true;
+let cssHost = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/';
+//cssHost = './'; // for dev purpose only
+
 
 //mouse lighting and follow
 document.addEventListener('mousemove', (e) => {
@@ -364,7 +367,7 @@ function goTo(url) {
     window.open(url, '_blank');
 }
 
-// sorcerer thing to scroll automatically
+// sorcerer thing to scroll automatically (only on desktop)
 const edgeThreshold =  80; // px from top/bottom to trigger scroll
 const maxScrollSpeed = 6;  // maximum speed (px per interval)
 const intervalDelay = 10;   // ms
@@ -482,12 +485,14 @@ function updateStylesheets() {
       desktopCss = document.createElement('link');
       desktopCss.rel = 'stylesheet';
       desktopCss.id = 'desktop-css';
-      desktopCss.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' + 'desktop.css';
+      desktopCss.href = cssHost + 'desktop.css';
       desktopCss.media = 'screen and (min-width: 768px)';
       document.head.appendChild(desktopCss);
     }
     // Remove Mobile CSS if exists
     if (mobileCss) mobileCss.remove();
+    // enable autoScroll
+    automaticScrollEnabled = true;
   } else {
     // Mobile view
     if (!mobileCss) {
@@ -495,12 +500,14 @@ function updateStylesheets() {
       mobileCss = document.createElement('link');
       mobileCss.rel = 'stylesheet';
       mobileCss.id = 'mobile-css';
-      mobileCss.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' +  'mobile.css';
+      mobileCss.href = cssHost +  'mobile.css';
       mobileCss.media = 'screen and (max-width: 767px)';
       document.head.appendChild(mobileCss);
     }
     // Remove Desktop CSS if exists
     if (desktopCss) desktopCss.remove();
+    // disable autoScroll
+    automaticScrollEnabled = false;
   }
 }
 
@@ -522,7 +529,7 @@ function doPrint() {
     var link = document.createElement('link');
     link.rel = 'stylesheet';
     link.id = 'print-css';
-    link.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' + 'print.css'; // Update this path to your print CSS file
+    link.href = cssHost + 'print.css'; // Update this path to your print CSS file
 
     document.head.appendChild(link);
 
@@ -553,7 +560,7 @@ function beforePrint() {
   var link = document.createElement('link');
   link.rel = 'stylesheet';
   link.id = 'print-css';
-  link.href = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@main/' + 'print.css'; // Update this path to your print CSS file
+  link.href = cssHost + 'print.css'; // Update this path to your print CSS file
   document.head.appendChild(link);
 
 }
