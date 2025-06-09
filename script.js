@@ -202,11 +202,15 @@ function toggleFilterButton(btn) {
 
     // alert if no card displayed
     if(! anyCard){
-        alert('no experience found, filter may be irrelevant');
+        document.getElementById('experiences-title').style.display = "none";
+    } else {
+        document.getElementById('experiences-title').style.display = "block";
     }
 
     if(! anyEvent){
-        alert('no event found, filter may be irrelevant');
+        document.getElementById('events-title').style.display = "none";
+    } else {
+        document.getElementById('events-title').style.display = "block";
     }
     
 }
