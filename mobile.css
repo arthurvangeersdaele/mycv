@@ -1,3 +1,31 @@
+:root {
+/* blue */
+  --black: rgb(30, 60, 90);             /* deep navy */
+  --darkGrey: rgb(70, 110, 150);        /* stronger medium blue */
+  --lightGrey: rgb(200, 220, 235);      /* soft light blue */
+  --veryLightGrey: rgb(235, 245, 250);  /* very pale blue */
+  --backgroundColor: rgb(255, 255, 255);/* white */
+
+/* greys  */
+/*    --darkGrey: rgb(145, 145, 145);
+    --black: rgb(51, 51, 51);
+    --lightGrey: rgb(223, 223, 223);
+    --veryLightGrey: rgb(249, 249, 249);
+    --backgroundColor: rgb(255, 255, 255);*/
+
+}
+
+
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+
 body {
   width: 100%;
   overflow-x: hidden; /* Prevent horizontal scroll */
@@ -11,7 +39,6 @@ body {
     --x: 50%;
     --y: 50%;
     --white: 241, 231, 254; /*235, 235, 235; */
-    --black: 0, 0, 0;
     --borderRadius: 3px;
 
   /* Hide scrollbar - cross-browser */
@@ -20,8 +47,8 @@ body {
 
 
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
+    background-color: var(--backgroundColor);
+    color: var(--black);
 }
 
 .print-only{
@@ -108,7 +135,7 @@ body {
     border: none;
     box-shadow: none;
     padding: 0.5rem;
-    background: #f9f9f9;
+    background-color: var(--veryLightGrey);
     border-radius: 0.5rem;
     border:solid rgba(0, 0, 0, 0.1) 2px;
   }
@@ -132,44 +159,49 @@ body {
     font-size: 0.7em;
     font-weight: 700;
     opacity:1.0;
-    color:#919191;
-    background-color: #fff;
-    border: solid 2px #dfdfdf;
+    color:var(--darkGrey);
+    background-color: var(--backgroundColor);
+    border: solid 2px var(--lightGrey);
     border-width: 0 0px 2px 0px;
     border-radius:4px;
   }
    /* Keyword formatting */
 
-.experience-card-keywords{
+.experience-card-keywords {
     position: relative;
-    margin-top:2px;
-    overflow:hidden;
-    display:flex;
-    transition: transform 0.3s ease;
-    transform-origin: left;
-    display: flex;
-    align-items: flex-start;
+    margin-top: 2px;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden;
+    display: block; /* Not flex, but block to control height */
+    white-space: nowrap; /* Prevent wrapping */
+    height: 30px;
 }
-.experience-card-keywords .keyword{
-    font-size:0.8em;
-    line-height: 0.8;
-    background-color: rgba(var(--white), 0.5);
-    color: var(--mainColor);
-    padding: 0.2em;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    margin:1px 2px 1px 2px;
-    border-radius: var(--borderRadius);
-  }
 
-  /* Collapse keywords and descriptions */
-/*  .experience-card-keywords,
-  .event-card-keywords,
-  .experience-card-description,
-  .event-card-description {
-    display: none;
-  }
-*/
+
+.experience-card-keywords::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px; /* Width of the fade */
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to right, transparent, var(--veryLightGrey)); /* Adjust color to match background */
+}
+
+
+.experience-card-keywords .keyword {
+    display: inline-block; /* Inline-block to allow horizontal layout */
+    font-size: 0.8em;
+    line-height: 0.8;
+    background-color: var(--darkGrey);
+    color: var(--backgroundColor);
+    padding: 0.2em 0.5em;
+    margin: 1px 2px;
+    border-radius: var(--borderRadius);
+    white-space: nowrap; /* Prevent keyword text from wrapping */
+}
+
   /* Titles bold and clickable */
   .experience-card-title{
     font-size: 1rem;
@@ -198,12 +230,12 @@ body {
     top: 0px;
     left: 0px;
     font-size: 1.5rem;
-    color: rgba(var(--white), 0.5);
+    color:var(--darkGrey);
     pointer-events: none;
     user-select: none;
   }
   .recommendation-card-author{
-      color: rgba(var(--white), 0.6); /* translucent rgba(var(--white), 1) background */
+      color:var(--darkGrey);/* translucent rgba(var(--white), 1) background */
       font-size:1em;
       font-weight:700;
       padding:0;
@@ -224,7 +256,10 @@ body {
   }
 
   footer p:not(.last-updated) {
-    display: none;
+    margin:0; 
+    padding: 0; 
+    line-height: 1.0; 
+    text-align: justify;
   }
 
   footer .last-updated {
