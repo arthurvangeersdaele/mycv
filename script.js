@@ -577,7 +577,7 @@ window.onafterprint = afterPrint;
 
 // update last updated
 async function updateLastUpdated() {
-  const apiUrl = "https://api.github.com/repos/arthurvangeersdaele/mycv/commits?path=index.html";
+  const apiUrl = "https://api.github.com/repos/arthurvangeersdaele/open-cv/commits?path=index.html";
 
   try {
     const response = await fetch(apiUrl);
