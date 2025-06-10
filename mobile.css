@@ -168,12 +168,6 @@ body {
    /* Keyword formatting */
 
 .experience-card-keywords {
-   --fade-width: 40px;
-    -webkit-mask-image: linear-gradient(to right, black calc(100% - var(--fade-width)), transparent);
-    mask-image: linear-gradient(to right, black calc(100% - var(--fade-width)), transparent);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-  
     position: relative;
     margin-top: 2px;
     overflow-x: auto; /* Enable horizontal scrolling */
@@ -181,12 +175,13 @@ body {
     display: block; /* Not flex, but block to control height */
     white-space: nowrap; /* Prevent wrapping */
     height: 30px;
+    box-shadow: inset -40px 0 20px -10px var(--veryLightGrey);
 }
 
 
 /* .experience-card-keywords::after {
   content: "";
-  position: absolute;
+  position: sticky;
   top: 0;
   right: 0;
   width: 40px;
