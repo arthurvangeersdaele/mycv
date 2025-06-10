@@ -1,6 +1,12 @@
 TO-DO
 - define Mobile CSS
+  > update css host (jsdeliver) using versionning
+  > define footer css
+  > define parametric color theme
 - define Print CSS
+  > Add a "Quick view" label on the first page
+  > Add the function targeted by the CV
+  > Add higlighted function (ex: doctor, engineer, ...)
 - handle when no-events // no experience
 
 
