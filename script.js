@@ -1,6 +1,6 @@
 //global variables 
 let automaticScrollEnabled = true;
-let cssHost = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@c083544/';
+let cssHost = 'https://cdn.jsdelivr.net/gh/arthurvangeersdaele/open-cv@2607cf9/';
 const version = new Date().getTime(); 
 //cssHost = './'; // for dev purpose only
 
