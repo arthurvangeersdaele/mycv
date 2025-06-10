@@ -168,6 +168,12 @@ body {
    /* Keyword formatting */
 
 .experience-card-keywords {
+   --fade-width: 40px;
+    -webkit-mask-image: linear-gradient(to right, black calc(100% - var(--fade-width)), transparent);
+    mask-image: linear-gradient(to right, black calc(100% - var(--fade-width)), transparent);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  
     position: relative;
     margin-top: 2px;
     overflow-x: auto; /* Enable horizontal scrolling */
@@ -178,16 +184,16 @@ body {
 }
 
 
-.experience-card-keywords::after {
+/* .experience-card-keywords::after {
   content: "";
   position: absolute;
   top: 0;
   right: 0;
-  width: 40px; /* Width of the fade */
+  width: 40px;
   height: 100%;
   pointer-events: none;
   background: linear-gradient(to right, transparent, var(--veryLightGrey)); /* Adjust color to match background */
-}
+} */
 
 
 .experience-card-keywords .keyword {
